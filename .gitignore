@@ -1,15 +1,46 @@
+# Gradle
+.gradle/
+build/
+
+# Local configuration
+local.properties
+
+# Android Studio
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+
+# OS files
 .DS_Store
-/build
+
+# Build outputs
 /captures
 .externalNativeBuild
 .cxx
-local.properties
+
+# Keystore files
+*.jks
+*.keystore
+
+# Logs
+*.log
+
+# Generated files
+generated/
+
+# Kotlin
+.kotlin/
+
+# Android Studio Navigation editor
+.idea/navEditor.xml
+
+# Android Studio asset wizard
+.idea/assetWizardSettings.xml
+
+# Android Studio caches
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+
+# NDK
+obj/
