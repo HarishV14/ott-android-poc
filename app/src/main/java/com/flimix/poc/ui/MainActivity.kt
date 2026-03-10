@@ -20,16 +20,20 @@ import com.flimix.poc.schema.PageResponse
 import com.flimix.poc.ui.renderer.BlockRenderer
 import com.flimix.poc.ui.theme.FlimixandroidpocTheme
 
+import com.flimix.poc.ui.utils.toColor
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         val pageResponse = MockApi.getHomePage()
+        val bgColor = pageResponse.schema.layout?.canvas_bg.toColor(Color(0xFF171717))
+        
         setContent {
             FlimixandroidpocTheme {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
-                    containerColor = Color(0xFF171717) // Matching canvas_bg
+                    containerColor = bgColor
                 ) { innerPadding ->
                     SduiPage(
                         pageResponse = pageResponse,
@@ -43,10 +47,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun SduiPage(pageResponse: PageResponse, modifier: Modifier = Modifier) {
+    val bgColor = pageResponse.schema.layout?.canvas_bg.toColor(Color(0xFF171717))
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFF171717))
+            .background(bgColor)
             .verticalScroll(rememberScrollState())
     ) {
         val canvasWidth = pageResponse.schema.layout?.canvas_content_width

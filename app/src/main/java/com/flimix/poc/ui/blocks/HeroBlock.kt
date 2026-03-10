@@ -25,6 +25,8 @@ import com.flimix.poc.schema.HeroProps
 import com.flimix.poc.schema.MockApi
 import kotlinx.serialization.json.decodeFromJsonElement
 
+import com.flimix.poc.ui.utils.toColor
+
 @Composable
 fun HeroBlock(block: Block, canvasContentWidth: Int? = null) {
     val props = remember(block.props) {
@@ -38,12 +40,17 @@ fun HeroBlock(block: Block, canvasContentWidth: Int? = null) {
     if (props.items.isEmpty()) return
 
     val pagerState = rememberPagerState(pageCount = { props.items.size })
+    val blockBg = block.style?.get("background_color")?.let { 
+        it.toString().replace("\"", "").toColor() 
+    } ?: Color.Transparent
 
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .height(660.dp)
+            .background(blockBg)
     ) {
+        // ... (rest of the Box content)
         HorizontalPager(
             state = pagerState,
             modifier = Modifier.fillMaxSize()
@@ -134,8 +141,8 @@ fun HeroBlock(block: Block, canvasContentWidth: Int? = null) {
                             Button(
                                 onClick = { /* Handle Click */ },
                                 colors = ButtonDefaults.buttonColors(
-                                    containerColor = Color.White,
-                                    contentColor = Color.Black
+                                    containerColor = cta.background_color.toColor(Color.White),
+                                    contentColor = cta.text_color.toColor(Color.Black)
                                 ),
                                 shape = RoundedCornerShape(4.dp),
                                 modifier = Modifier.height(48.dp)

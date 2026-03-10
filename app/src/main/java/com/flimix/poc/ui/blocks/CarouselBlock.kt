@@ -24,6 +24,8 @@ import com.flimix.poc.schema.ContentItem
 import com.flimix.poc.schema.MockApi
 import kotlinx.serialization.json.decodeFromJsonElement
 
+import com.flimix.poc.ui.utils.toColor
+
 @Composable
 fun CarouselBlock(block: Block, canvasContentWidth: Int? = null) {
     val props = remember(block.props) {
@@ -133,7 +135,7 @@ fun CarouselCard(item: ContentItem, props: CarouselProps) {
                         modifier = Modifier
                             .fillMaxWidth(item.progress / 100f)
                             .fillMaxHeight()
-                            .background(Color(android.graphics.Color.parseColor(props.progress_bar.color ?: "#FF0000")))
+                            .background(props.progress_bar.color.toColor(Color.Red))
                     )
                 }
             }

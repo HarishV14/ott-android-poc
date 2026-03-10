@@ -14,7 +14,7 @@ import com.flimix.poc.ui.blocks.HeroBlock
 fun BlockRenderer(block: Block, canvasContentWidth: Int? = null) {
     when (block.type) {
         "hero" -> HeroBlock(block, canvasContentWidth)
-        "carousel", "contentLibrary" -> CarouselBlock(block, canvasContentWidth)
+        "carousel" -> CarouselBlock(block, canvasContentWidth)
         else -> Text(
             text = "Unknown block: ${block.type}",
             color = Color.Red,
