@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.flimix.poc.blocks.tv"
+    namespace = "com.flimix.poc.features.content.mobile"
     compileSdk = 36
 
     defaultConfig {
@@ -26,14 +26,13 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
     implementation(project(":renderer"))
-    implementation(project(":schema"))
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.material3)
     implementation(libs.coil.compose)
-
-    implementation(libs.androidx.tv.material)
 }
+

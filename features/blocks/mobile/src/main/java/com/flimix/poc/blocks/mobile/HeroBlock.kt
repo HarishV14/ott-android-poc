@@ -25,9 +25,11 @@ import com.flimix.poc.schema.HeroProps
 import kotlinx.serialization.json.decodeFromJsonElement
 import com.flimix.poc.schema.SchemaJson
 import com.flimix.poc.renderer.util.toColor
+import com.flimix.poc.renderer.navigation.LocalPageNavigator
 
 @Composable
 fun HeroBlock(block: Block, canvasContentWidth: Int? = null) {
+    val navigator = LocalPageNavigator.current
     val props = remember(block.props) {
         try {
             block.props?.let { SchemaJson.json.decodeFromJsonElement<HeroProps>(it) } ?: HeroProps()
@@ -139,7 +141,7 @@ fun HeroBlock(block: Block, canvasContentWidth: Int? = null) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         item.primary_cta?.let { cta ->
                             Button(
-                                onClick = { /* Handle Click */ },
+                                onClick = { navigator.playContent(item.id) },
                                 colors = ButtonDefaults.buttonColors(
                                     containerColor = cta.background_color.toColor(Color.White),
                                     contentColor = cta.text_color.toColor(Color.Black)

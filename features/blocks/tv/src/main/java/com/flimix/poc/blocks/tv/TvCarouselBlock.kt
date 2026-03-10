@@ -2,16 +2,17 @@ package com.flimix.poc.blocks.tv
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
+import androidx.tv.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.tv.foundation.lazy.list.TvLazyRow
-import androidx.tv.foundation.lazy.list.items
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import com.flimix.poc.schema.Block
 import com.flimix.poc.schema.CarouselProps
 import kotlinx.serialization.json.decodeFromJsonElement
@@ -19,6 +20,7 @@ import com.flimix.poc.schema.SchemaJson
 import com.flimix.poc.renderer.util.toColor
 import com.flimix.poc.blocks.tv.components.TvPosterCard
 
+@OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun TvCarouselBlock(block: Block) {
     val props = remember(block.props) {
@@ -55,7 +57,7 @@ fun TvCarouselBlock(block: Block) {
             modifier = Modifier.padding(start = 40.dp, bottom = 16.dp)
         )
 
-        TvLazyRow(
+        LazyRow(
             contentPadding = PaddingValues(horizontal = 40.dp),
             horizontalArrangement = Arrangement.spacedBy(gridGap),
             modifier = Modifier.fillMaxWidth()

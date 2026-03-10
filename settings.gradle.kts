@@ -30,5 +30,8 @@ include(
     ":features:page:tv",
     ":features:blocks:mobile",
     ":features:blocks:tv",
+    ":features:player",
+    ":features:content:mobile",
+    ":features:content:tv",
 )
  

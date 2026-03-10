@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.flimix.poc.blocks.tv"
+    namespace = "com.flimix.poc.features.player"
     compileSdk = 36
 
     defaultConfig {
@@ -26,14 +26,12 @@ android {
 }
 
 dependencies {
-    implementation(project(":renderer"))
-    implementation(project(":schema"))
-
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.material3)
-    implementation(libs.coil.compose)
 
-    implementation(libs.androidx.tv.material)
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.exoplayer.hls)
+    implementation(libs.androidx.media3.ui)
 }
+

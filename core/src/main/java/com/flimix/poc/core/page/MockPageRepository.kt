@@ -686,11 +686,14 @@ object MockPageRepository : PageRepository {
     }
     """
 
+    private val homePage: PageResponse by lazy {
+        SchemaJson.json.decodeFromString(MOCK_RESPONSE)
+    }
+
     override fun getPage(slug: String): PageResponse? {
         return when (slug) {
-            "home" -> SchemaJson.json.decodeFromString(MOCK_RESPONSE)
+            "home" -> homePage
             else -> null
         }
     }
 }
-

@@ -1,6 +1,7 @@
 package com.flimix.poc.blocks.mobile
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -24,6 +25,7 @@ import com.flimix.poc.schema.ContentItem
 import kotlinx.serialization.json.decodeFromJsonElement
 import com.flimix.poc.schema.SchemaJson
 import com.flimix.poc.renderer.util.toColor
+import com.flimix.poc.renderer.navigation.LocalPageNavigator
 
 @Composable
 fun CarouselBlock(block: Block, canvasContentWidth: Int? = null) {
@@ -91,6 +93,7 @@ fun CarouselBlock(block: Block, canvasContentWidth: Int? = null) {
 
 @Composable
 fun CarouselCard(item: ContentItem, props: CarouselProps) {
+    val navigator = LocalPageNavigator.current
     val width = when(props.item_size) {
         "small" -> 140.dp
         "large" -> 220.dp
@@ -106,7 +109,12 @@ fun CarouselCard(item: ContentItem, props: CarouselProps) {
     
     val height = width / aspectRatio
 
-    Column(modifier = Modifier.width(width)) {
+    Column(
+        modifier =
+            Modifier
+                .width(width)
+                .clickable { navigator.openContent(item.id) },
+    ) {
         Box(
             modifier = Modifier
                 .width(width)

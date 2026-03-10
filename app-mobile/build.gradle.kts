@@ -45,6 +45,8 @@ dependencies {
     implementation(project(":renderer"))
     implementation(project(":features:page:mobile"))
     implementation(project(":features:blocks:mobile"))
+    implementation(project(":features:player"))
+    implementation(project(":features:content:mobile"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -54,6 +56,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

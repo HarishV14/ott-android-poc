@@ -3,10 +3,11 @@ package com.flimix.poc.blocks.tv
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.tv.material3.Button
+import androidx.tv.material3.ButtonDefaults
+import androidx.tv.material3.ExperimentalTvMaterial3Api
+import androidx.tv.material3.MaterialTheme
+import androidx.tv.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -14,21 +15,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.flimix.poc.schema.Block
 import com.flimix.poc.schema.HeroProps
 import com.flimix.poc.schema.SchemaJson
 import kotlinx.serialization.json.decodeFromJsonElement
 import com.flimix.poc.renderer.util.toColor
+import com.flimix.poc.renderer.navigation.LocalPageNavigator
 
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 
+@OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun TvHeroBlock(block: Block) {
+    val navigator = LocalPageNavigator.current
     val props = remember(block.props) {
         try {
             block.props?.let { SchemaJson.json.decodeFromJsonElement<HeroProps>(it) } ?: HeroProps()
@@ -52,12 +58,23 @@ fun TvHeroBlock(block: Block) {
     ) {
         HorizontalPager(
             state = pagerState,
+            beyondViewportPageCount = 0,
             modifier = Modifier.fillMaxSize()
         ) { page ->
             val item = props.items[page]
             Box(modifier = Modifier.fillMaxSize()) {
+                val context = LocalContext.current
+                val imageUrl = item.cover ?: item.poster ?: item.thumbnail
+                val imageRequest =
+                    remember(imageUrl) {
+                        ImageRequest.Builder(context)
+                            .data(imageUrl)
+                            // Avoid decoding full 4K bitmaps for every page while swiping.
+                            .size(1280, 720)
+                            .build()
+                    }
                 AsyncImage(
-                    model = item.cover ?: item.poster ?: item.thumbnail,
+                    model = imageRequest,
                     contentDescription = null,
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Crop
@@ -108,12 +125,14 @@ fun TvHeroBlock(block: Block) {
 
                     item.primary_cta?.let { cta ->
                         Button(
-                            onClick = { /* Handle Click */ },
-                            colors = ButtonDefaults.buttonColors(
+                            onClick = { navigator.playContent(item.id) },
+                            colors = ButtonDefaults.colors(
                                 containerColor = cta.background_color.toColor(Color.White),
-                                contentColor = cta.text_color.toColor(Color.Black)
+                                contentColor = cta.text_color.toColor(Color.Black),
+                                focusedContainerColor = Color.White,
+                                focusedContentColor = Color.Black
                             ),
-                            shape = RoundedCornerShape(8.dp),
+                            shape = ButtonDefaults.shape(shape = RoundedCornerShape(8.dp)),
                             modifier = Modifier
                                 .height(56.dp)
                                 .padding(end = 16.dp)

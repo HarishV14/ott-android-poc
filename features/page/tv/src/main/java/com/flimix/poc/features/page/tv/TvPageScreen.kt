@@ -5,8 +5,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.tv.foundation.lazy.list.TvLazyColumn
-import androidx.tv.foundation.lazy.list.items
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import com.flimix.poc.renderer.BlockRenderer
 import com.flimix.poc.renderer.util.toColor
 import com.flimix.poc.schema.PageResponse
@@ -15,7 +15,7 @@ import com.flimix.poc.schema.PageResponse
 fun TvPageScreen(pageResponse: PageResponse) {
     val bgColor = pageResponse.schema.layout?.canvas_bg.toColor(Color(0xFF171717))
 
-    TvLazyColumn(
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .background(bgColor),

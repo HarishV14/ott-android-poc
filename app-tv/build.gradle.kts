@@ -44,6 +44,8 @@ dependencies {
     implementation(project(":renderer"))
     implementation(project(":features:page:tv"))
     implementation(project(":features:blocks:tv"))
+    implementation(project(":features:player"))
+    implementation(project(":features:content:tv"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -53,6 +55,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
