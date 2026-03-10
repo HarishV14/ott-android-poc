@@ -31,7 +31,7 @@ fun HomeScreen(pageResponse: PageResponse, modifier: Modifier = Modifier) {
                 .verticalScroll(rememberScrollState())
         ) {
             pageResponse.schema.blocks.forEach { block ->
-                RenderBlock(block = block, canvasContentWidth = canvasWidth)
+                RenderBlock(block = block, canvasContentWidth = canvasWidth, isTv = false)
             }
         }
     }

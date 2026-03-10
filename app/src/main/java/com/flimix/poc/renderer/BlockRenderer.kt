@@ -9,12 +9,26 @@ import androidx.compose.ui.unit.dp
 import com.flimix.poc.schema.Block
 import com.flimix.poc.ui.blocks.CarouselBlock
 import com.flimix.poc.ui.blocks.HeroBlock
+import com.flimix.poc.ui.tv.blocks.TvCarouselBlock
+import com.flimix.poc.ui.tv.blocks.TvHeroBlock
 
 @Composable
-fun RenderBlock(block: Block, canvasContentWidth: Int? = null) {
+fun RenderBlock(block: Block, canvasContentWidth: Int? = null, isTv: Boolean = false) {
     when (block.type) {
-        "hero" -> HeroBlock(block, canvasContentWidth)
-        "carousel" -> CarouselBlock(block, canvasContentWidth)
+        "hero" -> {
+            if (isTv) {
+                TvHeroBlock(block)
+            } else {
+                HeroBlock(block, canvasContentWidth)
+            }
+        }
+        "carousel" -> {
+            if (isTv) {
+                TvCarouselBlock(block)
+            } else {
+                CarouselBlock(block, canvasContentWidth)
+            }
+        }
         else -> Text(
             text = "Unknown block: ${block.type}",
             color = Color.Red,
