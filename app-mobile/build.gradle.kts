@@ -42,8 +42,9 @@ android {
 
 dependencies {
     implementation(project(":core"))
-    implementation(project(":designsystem"))
-    implementation(project(":features:home:mobile"))
+    implementation(project(":renderer"))
+    implementation(project(":features:page:mobile"))
+    implementation(project(":features:blocks:mobile"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

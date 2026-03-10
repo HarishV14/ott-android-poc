@@ -41,8 +41,9 @@ android {
 
 dependencies {
     implementation(project(":core"))
-    implementation(project(":designsystem"))
-    implementation(project(":features:home:tv"))
+    implementation(project(":renderer"))
+    implementation(project(":features:page:tv"))
+    implementation(project(":features:blocks:tv"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -61,4 +62,3 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
-

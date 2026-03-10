@@ -26,9 +26,9 @@ include(
     ":core",
     ":schema",
     ":renderer",
-    ":designsystem",
-    ":features:home:shared",
-    ":features:home:mobile",
-    ":features:home:tv",
+    ":features:page:mobile",
+    ":features:page:tv",
+    ":features:blocks:mobile",
+    ":features:blocks:tv",
 )
  

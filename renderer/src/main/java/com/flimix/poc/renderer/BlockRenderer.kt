@@ -3,6 +3,8 @@ package com.flimix.poc.renderer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -27,10 +29,20 @@ class BlockRegistryBuilder {
 fun blockRegistry(build: BlockRegistryBuilder.() -> Unit): BlockRegistry =
     BlockRegistryBuilder().apply(build).build()
 
+val LocalBlockRegistry = staticCompositionLocalOf { blockRegistry { } }
+
+@Composable
+fun ProvideBlockRegistry(
+    registry: BlockRegistry,
+    content: @Composable () -> Unit,
+) {
+    CompositionLocalProvider(LocalBlockRegistry provides registry, content = content)
+}
+
 @Composable
 fun BlockRenderer(
     block: Block,
-    registry: BlockRegistry,
+    registry: BlockRegistry = LocalBlockRegistry.current,
     canvasContentWidth: Int? = null,
     modifier: Modifier = Modifier,
 ) {
