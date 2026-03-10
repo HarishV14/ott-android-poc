@@ -4,12 +4,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.tv.material3.Button
+import androidx.tv.material3.ButtonDefaults
+import androidx.tv.material3.ExperimentalTvMaterial3Api
+import androidx.tv.material3.MaterialTheme
+import androidx.tv.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -21,6 +25,7 @@ import coil.compose.AsyncImage
 import com.flimix.poc.core.content.MockContentRepository
 import com.flimix.poc.renderer.navigation.LocalPageNavigator
 
+@OptIn(ExperimentalTvMaterial3Api::class)
 @Composable
 fun TvContentDetailScreen(
     contentId: Int,
@@ -34,6 +39,7 @@ fun TvContentDetailScreen(
             modifier
                 .fillMaxSize()
                 .background(Color(0xFF171717))
+                .verticalScroll(rememberScrollState())
                 .padding(horizontal = 40.dp, vertical = 24.dp),
     ) {
         AsyncImage(
@@ -66,7 +72,13 @@ fun TvContentDetailScreen(
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Button(onClick = { navigator.playContent(contentId) }) {
+        Button(
+            onClick = { navigator.playContent(contentId) },
+            colors = ButtonDefaults.colors(
+                focusedContainerColor = Color.White,
+                focusedContentColor = Color.Black
+            )
+        ) {
             Text(text = "Watch Now")
         }
     }
