@@ -10,7 +10,17 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app-mobile" />
+            <option value="$PROJECT_DIR$/app-tv" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/designsystem" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/home" />
+            <option value="$PROJECT_DIR$/features/home/mobile" />
+            <option value="$PROJECT_DIR$/features/home/shared" />
+            <option value="$PROJECT_DIR$/features/home/tv" />
+            <option value="$PROJECT_DIR$/renderer" />
+            <option value="$PROJECT_DIR$/schema" />
           </set>
         </option>
       </GradleProjectSettings>

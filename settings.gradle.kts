@@ -20,5 +20,15 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "flimix-android-poc"
-include(":app")
+include(
+    ":app-mobile",
+    ":app-tv",
+    ":core",
+    ":schema",
+    ":renderer",
+    ":designsystem",
+    ":features:home:shared",
+    ":features:home:mobile",
+    ":features:home:tv",
+)
  
