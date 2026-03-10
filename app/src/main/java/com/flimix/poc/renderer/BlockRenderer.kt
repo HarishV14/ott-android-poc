@@ -1,4 +1,4 @@
-package com.flimix.poc.ui.renderer
+package com.flimix.poc.renderer
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -11,7 +11,7 @@ import com.flimix.poc.ui.blocks.CarouselBlock
 import com.flimix.poc.ui.blocks.HeroBlock
 
 @Composable
-fun BlockRenderer(block: Block, canvasContentWidth: Int? = null) {
+fun RenderBlock(block: Block, canvasContentWidth: Int? = null) {
     when (block.type) {
         "hero" -> HeroBlock(block, canvasContentWidth)
         "carousel" -> CarouselBlock(block, canvasContentWidth)
